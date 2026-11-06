@@ -1,0 +1,34 @@
+# Copier en terraform.tfvars (ignoré par Git) et remplir. Ne jamais versionner de secret.
+project_name = "nyctaxi"
+environment  = "dev"
+location     = "francecentral"
+# resource_group_name = "monRG"   # par défaut : otymoshenkoRG
+
+tags = {
+  Project     = "NYC Taxi Pipeline"
+  ManagedBy   = "Terraform"
+  Environment = "dev"
+  Owner       = "OTymoshenko"
+}
+
+# Mois ingérés par le pipeline (YYYY-MM)
+start_date = "2025-01"
+end_date   = "2025-02"
+
+# Ressources du container
+container_apps_cpu          = 0.5
+container_apps_memory       = "1Gi"
+container_apps_min_replicas = 0
+container_apps_max_replicas = 1
+
+# Secret : à fournir ici en local, ou par la variable d'environnement TF_VAR_postgres_password
+postgres_password = "CHANGE_ME"
+
+# Variables non sensibles en plus pour le pipeline
+# env_vars = {
+#   POSTGRES_HOST     = "<serveur>.postgres.cosmos.azure.com"
+#   POSTGRES_PORT     = "5432"
+#   POSTGRES_DB       = "citus"
+#   POSTGRES_USER     = "citus"
+#   POSTGRES_SSL_MODE = "require"
+# }
