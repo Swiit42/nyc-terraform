@@ -3,9 +3,9 @@ FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim AS builder
 
 WORKDIR /app
 
-COPY pyproject.toml uv.lock ./
+COPY pyproject.toml ./
 
-RUN uv sync --frozen --no-dev --compile-bytecode
+RUN uv lock && uv sync --no-dev --compile-bytecode
 
 COPY pipelines/ ./pipelines/
 COPY utils/ ./utils/
